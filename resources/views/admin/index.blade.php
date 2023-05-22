@@ -13,7 +13,12 @@
                 <h6 class="card-subtitle mb-2 text-body-secondary">Framework: {{$project->framework}}</h6>
                 <h6 class="card-subtitle mb-2 text-body-secondary">Data inizio: {{$project->start_date}}</h6>
                 <a href="{{route('admin.projects.edit',['project'=>$project->slug])}}" class="btn btn-success">Modifica</a>
-                <a href="#" class="btn btn-danger">Elimina</a>
+                <form action="{{route('admin.projects.destroy',['project'=>$project->slug])}}" method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Elimina</button>
+                </form>
+                
                 <a href="{{route('admin.projects.show',['project'=>$project->slug])}}" class="btn btn-secondary">Vedi</a>
             </div>
         </div>
