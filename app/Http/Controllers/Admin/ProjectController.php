@@ -44,6 +44,7 @@ class ProjectController extends Controller
         $newProject->language_dev = $form_project["language_dev"];
         $newProject->framework = $form_project["framework"];
         $newProject->start_date = $form_project["start_date"]; 
+        $newProject->slug = Str::slug($newProject->name, '-');
         $newProject->save();
 
         return redirect()->route('admin.projects.index');
@@ -57,7 +58,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('admin.show', compact('project'));
     }
 
     /**
@@ -68,7 +69,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.edit', compact('project'));
     }
 
     /**
@@ -80,7 +81,11 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $form_project = $request->all();
+        $project->update($form_project);
+
+        return redirect()->route('admin.projects.index');
+
     }
 
     /**
