@@ -16,10 +16,9 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50)->unique();
-            $table->string('language_dev', 20);
+            $table->string('language_dev', 50);
             $table->string('framework', 50);
             $table->date('start_date');
-            $table->string('slug');
             $table->timestamps();
         });
     }

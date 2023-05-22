@@ -23,7 +23,6 @@ class ProjectSeeder extends Seeder
         $newProject->language_dev = $faker->sentence(1);
         $newProject->framework = $faker->sentence(3);
         $newProject->start_date = $faker->dateTimeBetween('-1 week', '+1 week');
-        $newProject->slug = Str::slug($newProject->name,'-');
         $newProject->save();
         }
     }
