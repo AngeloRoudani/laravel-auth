@@ -10,30 +10,30 @@
             @method('PUT')
                 <div class="mb-3">
                     <label for="name" class="form-label">Modifica progetto</label>
-                    <input type="text" id="name" name="name" class="form-control" value="{{ old('name')  ?? $project->name }}">
+                    <input type="text" id="name" name="name" class="form-control" value="{{ old('name')? old('name'): $project->name }}">
                     @error('thumb')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert alert-danger">{{ $messages }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label for="language_dev" class="form-label">Modifica Linguaggio</label>
                     <input type="text" id="language_dev" name="language_dev" class="form-control" value="{{ old('language_dev') ?? $project->language_dev  }}">
                     @error('title')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert alert-danger">{{ $messages }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label for="framework" class="form-label">Modifica Framework Usato</label>
                     <input type="text" id="framework" name="framework" class="form-control" value="{{ old('framework') ?? $project->framework  }}">
                     @error('price')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert alert-danger">{{ $messages }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label for="start_date" class="form-label">Modifica Data di inizio</label>
                     <input type="text" id="start_date" name="start_date"  class="form-control" value="{{ old('start_date') ?? $project->start_date  }}">
                     @error('sale_date')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert alert-danger">{{ $messages }}</div>
                     @enderror
                 </div>
 

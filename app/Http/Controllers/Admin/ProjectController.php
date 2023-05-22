@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin ;
 
+use App\Http\Requests\Project\StoreProjectRequest;
+use App\Http\Requests\Project\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
@@ -36,15 +39,16 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        $form_project = $request->all();
+        $form_project = $request->validated();
 
         $newProject = new Project();
         $newProject->name = $form_project["name"];
         $newProject->language_dev = $form_project["language_dev"];
         $newProject->framework = $form_project["framework"];
         $newProject->start_date = $form_project["start_date"]; 
+        $newProject->description = $form_project["description"];
         $newProject->slug = Str::slug($newProject->name, '-');
         $newProject->save();
 
@@ -80,12 +84,13 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
-    {
+    public function update(UpdateProjectRequest $request, Project $project)
+    {   
         $form_project = $request->all();
+        $form_project = $request->validated();
         $project->update($form_project);
 
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.projects.show', ['project'=> $project->slug]);
 
     }
 
@@ -100,4 +105,5 @@ class ProjectController extends Controller
         $project->delete();
         return redirect()->route('admin.projects.index');
     }
+
 }

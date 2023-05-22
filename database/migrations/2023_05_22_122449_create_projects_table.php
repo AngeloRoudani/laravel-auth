@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('language_dev', 50);
             $table->string('framework', 50);
             $table->date('start_date');
+            $table->string('description', 10000);
             $table->string('slug');
             $table->timestamps();
         });
