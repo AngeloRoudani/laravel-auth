@@ -26,7 +26,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        return view('admin.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class ProjectController extends Controller
         $newProject->start_date = $form_project["start_date"];
         $newProject->save();
 
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.index');
     }
 
     /**
