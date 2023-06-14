@@ -7,4 +7,5 @@
             <a href="{{route('admin.projects.create')}}" class="btn btn-success col-2 mx-auto mt-2">Crea Nuovo</a>
         </div>
     </div>
+    <a href="{{route('token')}}" class="btn btn-success">Pigia</a>
 @endsection

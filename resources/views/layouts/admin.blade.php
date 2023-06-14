@@ -28,6 +28,7 @@
             @yield('content')
         </main>
     </div>
+    <script src="https://js.braintreegateway.com/web/dropin/1.24.0/js/dropin.min.js"></script>
 </body>
 
 </html>

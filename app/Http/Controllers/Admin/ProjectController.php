@@ -6,9 +6,7 @@ use App\Http\Requests\Project\StoreProjectRequest;
 use App\Http\Requests\Project\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
@@ -86,11 +84,11 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {   
-        /*$form_project = $request->all();*/
-        $form_project = $request->validated();
-        $project->update($form_project);
+        
+        $update_project = $request->validated();                                                                                                                  
+        $project->update($update_project);
 
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.projects.show', ['project'=> $project->slug]);
 
     }
 

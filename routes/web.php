@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\BraintreeController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::any('/payment', [BraintreeController::class, 'token'])->name('token')->middleware('auth');
 
 Route::middleware(['auth', 'verified'])
     ->name('admin.')
